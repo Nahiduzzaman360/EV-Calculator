@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EV Calculator</title>
+    <link rel="stylesheet" href="bootstrap.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="logo" width="230" />
+            </a>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="container my-3">
+                <div id="status-danger" class="alert alert-danger text-center status">
+                    EV Required
+                </div>
+                <div id="status-success" class="alert alert-success text-center status">
+                    No EV Required
+                </div>
+                <h1 class="text-center">Ev Calculator</h1>
+                <ul class="nav nav-pills d-flex justify-content-center my-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                            aria-selected="true">
+                            3 Deposits
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                            aria-selected="false">
+                            4 Deposits
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                        aria-labelledby="pills-home-tab">
+                        <div class="mb-3">
+                            <label>Last DD Amount</label>
+                            <input type="number" id="field_1_3" autocomplete="off" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label>2nd DD Amount</label>
+                            <input type="number" id="field_2_3" autocomplete="off" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label>3rd DD Amount</label>
+                            <input type="number" id="field_3_3" autocomplete="off" class="form-control" required />
+                        </div>
+                        <button onclick="calculate(3)" class="float-end btn btn-primary mb-5">
+                            CALCULATE
+                        </button>
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="mb-3">
+                            <label>Last DD Amount</label>
+                            <input type="number" id="field_1_4" autocomplete="off" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label>2nd DD Amount</label>
+                            <input type="number" id="field_2_4" autocomplete="off" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label>3rd DD Amount</label>
+                            <input type="number" id="field_3_4" autocomplete="off" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label>4th DD Amount</label>
+                            <input type="number" id="field_4_4" autocomplete="off" class="form-control" required />
+                        </div>
+                        <button onclick="calculate(4)" class="float-end btn btn-primary mb-3">
+                            CALCULATE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <footer class="bg-dark py-3">
+        <p class="text-center text-white">Copyright © 2021 EV Calculator | All Right Reserved</p>
+    </footer>
+
+    <script src="bootstrap.js"></script>
+
+    <script>
+        function calculate(no) {
+            const statusSuccess = document.getElementById("status-success");
+            const statusDanger = document.getElementById("status-danger");
+            if (no == 3) {
+                const field_1_3 = document.getElementById("field_1_3");
+                const field_2_3 = document.getElementById("field_2_3");
+                const field_3_3 = document.getElementById("field_3_3");
+
+                if (
+                    field_1_3.value == "" ||
+                    field_2_3.value == "" ||
+                    field_3_3.value == ""
+                ) {
+                    alert("All Fields are Required!");
+                } else {
+                    const calculate = ((Number(field_2_3.value) + Number(field_3_3.value)) / 3) * 0.5;
+                    if (calculate > Number(field_1_3.value)) {
+                        statusSuccess.style.display = "none";
+                        statusDanger.style.display = "block";
+                    } else {
+                        statusDanger.style.display = "none";
+                        statusSuccess.style.display = "block";
+                    }
+                }
+            }
+            if (no == 4) {
+                const field_1_4 = document.getElementById("field_1_4");
+                const field_2_4 = document.getElementById("field_2_4");
+                const field_3_4 = document.getElementById("field_3_4");
+                const field_4_4 = document.getElementById("field_4_4");
+
+                if (
+                    field_1_4.value == "" ||
+                    field_2_4.value == "" ||
+                    field_3_4.value == "" ||
+                    field_4_4.value == ""
+                ) {
+                    alert("All Fields are Required!");
+                } else {
+                    const calculation =
+                        ((Number(field_2_4.value) +
+                            Number(field_3_4.value) +
+                            Number(field_4_4.value)) /
+                            3) *
+                        0.5;
+                    if (calculation > Number(field_1_4.value)) {
+                        statusSuccess.style.display = "none";
+                        statusDanger.style.display = "block";
+                    } else {
+                        statusDanger.style.display = "none";
+                        statusSuccess.style.display = "block";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
