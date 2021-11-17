@@ -1,8 +1,8 @@
 <?php 
 
 //include_once("home.html");
-echo `
+echo '
 <iframe src="home.html" frameborder="0"></iframe>
-`;
+'
 
 ?>
